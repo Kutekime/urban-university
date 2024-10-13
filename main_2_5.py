@@ -8,4 +8,4 @@ def get_matrix(n, m, value):
             matrix[i].append(value)
     return matrix
 
-print(get_matrix(5,3, 42))
+print(get_matrix(5, 3, 42))
