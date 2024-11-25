@@ -18,13 +18,14 @@ class RunnerTest(unittest.TestCase):
     Jho = Runner('Jho')
     Bill = Runner('Bill')
 
-    def reset(self, runner):
-        runner.distance = 0
+    def reset(self, *runner):
+        for r in runner:
+            r.distance = 0
 
     def test_walk(self): #метод, в котором создаётся объект класса Runner с произвольным именем.
         # Далее
         # вызовите метод walk у этого объекта 10 раз. После чего методом assertEqual сравните distance этого объекта со значением 50.
-        self.reset(self.Jho)
+        self.reset(self.Jho) #Понял, что reset здесь есть встроенный, но уже не стал переделывать
         for _ in range(10):
             self.Jho.walk()
         self.assertEqual(self.Jho.distance, 50)
@@ -44,13 +45,14 @@ class RunnerTest(unittest.TestCase):
         "перекрыть" собой тест в котором он запущен. Хотя, в обычном коде - это must-have
         :return:
         '''
-        self.reset(self.Jho)
+        
         for _ in range(10):
             self.Jho.walk()
-        self.reset(self.Bill)
+        
         for _ in range(10):
             self.Bill.run()
         self.assertNotEqual(self.Jho.distance, self.Bill.distance, 'Джо опять считерил!')
+        self.reset(self.Jho, self.Bill)
 
 
 
